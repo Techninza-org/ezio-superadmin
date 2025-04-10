@@ -53,7 +53,7 @@ const AllVendors = () => {
         size: 150,
         accessorFn: (dataRow) => (
           <p>
-            {dataRow.verified ? 'Verified' : ''}
+            {dataRow.verified ? 'Verified' : 'Not Verified'}
           </p>
         ),
       },
