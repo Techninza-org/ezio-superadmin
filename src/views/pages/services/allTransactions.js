@@ -46,7 +46,7 @@ export default function AllTransactions() {
       },
       {
         header: 'Date',
-        accessorFn: (dataRow) => new Date(dataRow.created_at).toLocaleString(),
+        accessorFn: (dataRow) => new Date(dataRow.created_at).toLocaleString().split(',')[0],
         size: 100,
       },
     ],

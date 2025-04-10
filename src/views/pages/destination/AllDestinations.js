@@ -34,8 +34,8 @@ const AllDestinations = () => {
 
     const columns = [
         {
-            header: 'Id',
-            accessorKey: 'id',
+            header: 'S.No',
+            accessorFn: (dataRow, index) => index + 1,
             size: 50,
         },
         {
@@ -55,7 +55,7 @@ const AllDestinations = () => {
         },
         {
             header: 'Delete',
-            accessorFn: (dataRow) => <button className='btn btn-secondary' onClick={() => deleteDestination(dataRow.id)}><CIcon icon={cilTrash} /></button>,
+            accessorFn: (dataRow) => <button className='btn btn-danger' onClick={() => deleteDestination(dataRow.id)}><CIcon icon={cilTrash} /></button>,
             size: 50
         },
 

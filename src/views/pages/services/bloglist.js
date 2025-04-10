@@ -34,13 +34,17 @@ const BlogsList = () => {
   const columns = useMemo(
     () => [
       {
-        header: 'Id',
-        accessorKey: 'id',
+        header: 'S.No',
+        accessorFn: (dataRow, index) => index + 1,
         size: 50,
       },
       {
         header: 'Title',
         accessorKey: 'title',
+      },
+      {
+        header: 'Date',
+        accessorFn: (dataRow) => new Date(dataRow.created_at).toLocaleString().split(',')[0],
       },
       {
         header: 'Delete',

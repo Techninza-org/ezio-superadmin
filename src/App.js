@@ -16,6 +16,7 @@ import Transactions from './views/pages/services/transactions'
 import Blog from './views/pages/services/blog'
 import BlogsList from './views/pages/services/bloglist'
 import AllTransactions from './views/pages/services/allTransactions'
+import AllUserDetail from './views/pages/services/AllUserDetail'
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
@@ -66,6 +67,7 @@ const App = () => {
           <Route exact path="/vendor/create" name="vendors" element={<CreateVendor />} />
           <Route exact path="/vendor/services/:id" name="services" element={<HostServices />} />
           <Route exact path="/vendor/trips/:id" name="trips" element={<Trips />} />
+          <Route exact path="detail/:id" name="user" element={<AllUserDetail />} />
           <Route exact path="/user/trips/:id" name="trips" element={<UserTrips />} />
           <Route exact path="/trip/:id" name="trips" element={<TripDetails />} />
           <Route exact path="/destination/add" name="destination" element={<AddDestination />} />

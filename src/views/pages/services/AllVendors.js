@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table'
 import CIcon from '@coreui/icons-react'
-import { cilArrowThickBottom, cilCheck, cilPaperPlane, cilTrash } from '@coreui/icons'
+import { cilAirplaneMode, cilArrowThickBottom, cilCheck, cilPaperPlane, cilPool, cilTrash } from '@coreui/icons'
 import { AppSidebar, AppHeader } from '../../../components/index'
 
 const AllVendors = () => {
@@ -33,9 +33,9 @@ const AllVendors = () => {
   const columns = useMemo(
     () => [
       {
-        header: 'Id',
-        accessorKey: 'id',
+        header: 'S.No',
         size: 50,
+        accessorFn: (dataRow, index) => index + 1,
         // accessorFn: (dataRow) => <Link to={`/user/${dataRow.id}`} style={{ textDecoration: 'none' }}>{dataRow.username}</Link>,
       },
       {
@@ -44,14 +44,19 @@ const AllVendors = () => {
         size: 150,
         accessorFn: (dataRow) => (
           <p>
-            {dataRow.username} {dataRow.verified ? <CIcon icon={cilCheck} /> : ''}
+            {dataRow.username}
           </p>
         ),
       },
-      // {
-      //     header: 'Email',
-      //     accessorKey: 'email',
-      // },
+      {
+        header: 'Status',
+        size: 150,
+        accessorFn: (dataRow) => (
+          <p>
+            {dataRow.verified ? 'Verified' : ''}
+          </p>
+        ),
+      },
       {
         header: 'Phone',
         accessorKey: 'phone',
@@ -70,25 +75,30 @@ const AllVendors = () => {
         header: 'Services',
         accessorFn: (dataRow) => (
           <Link to={`/vendor/services/${dataRow.id}`} className="btn btn-primary">
-            <CIcon icon={cilPaperPlane} />
+            <CIcon icon={cilPool} />
           </Link>
         ),
         size: 50,
       },
       {
-        header: 'Delete',
-        accessorFn: (dataRow) => (
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              deleteUser(dataRow.id)
-            }}
-          >
-            <CIcon icon={cilTrash} />
-          </button>
-        ),
-        size: 50,
+        header: 'Created At',
+        accessorFn: (dataRow) => new Date(dataRow.created_at).toLocaleString().split(',')[0],
+        size: 60,
       },
+      // {
+      //   header: 'Delete',
+      //   accessorFn: (dataRow) => (
+      //     <button
+      //       className="btn btn-danger"
+      //       onClick={() => {
+      //         deleteUser(dataRow.id)
+      //       }}
+      //     >
+      //       <CIcon icon={cilTrash} />
+      //     </button>
+      //   ),
+      //   size: 50,
+      // },
     ],
     [],
   )

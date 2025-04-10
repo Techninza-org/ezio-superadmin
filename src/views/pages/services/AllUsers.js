@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table'
 import CIcon from '@coreui/icons-react'
-import { cilMoney, cilPaperPlane } from '@coreui/icons'
+import { cilDataTransferUp, cilMoney, cilNotes, cilPaperPlane, cilPaperclip } from '@coreui/icons'
 import { AppSidebar, AppHeader } from '../../../components/index'
 
 const AllUsers = () => {
@@ -23,10 +23,9 @@ const AllUsers = () => {
   const columns = useMemo(
     () => [
       {
-        header: 'Id',
-        accessorKey: 'id',
+        header: 'S.No',
+        accessorFn: (dataRow, index) => index + 1,
         size: 50,
-        // accessorFn: (dataRow) => <Link to={`/user/${dataRow.id}`} style={{ textDecoration: 'none' }}>{dataRow.username}</Link>,
       },
       {
         header: 'Name',
@@ -57,7 +56,7 @@ const AllUsers = () => {
         header: 'KYC',
         accessorFn: (dataRow) => (
           <Link to={`/kyc/${dataRow.id}`} className="btn btn-primary">
-            <CIcon icon={cilPaperPlane} />
+            <CIcon icon={cilPaperclip} />
           </Link>
         ),
         size: 50,
@@ -70,6 +69,20 @@ const AllUsers = () => {
           </Link>
         ),
         size: 50,
+      },
+      {
+        header: 'View Posts',
+        accessorFn: (dataRow) => (
+          <Link to={`/detail/${dataRow.id}`} className="btn btn-primary">
+            <CIcon icon={cilNotes} />
+          </Link>
+        ),
+        size: 50,
+      },
+      {
+        header: 'Created At',
+        accessorFn: (dataRow) => new Date(dataRow.created_at).toLocaleString().split(',')[0],
+        size: 60,
       },
     ],
     [],

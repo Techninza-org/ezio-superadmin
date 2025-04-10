@@ -62,15 +62,41 @@ const ServiceOption = () => {
                 <div className="body flex-grow-1">
                     <div className='mx-5 mb-5'>
                         <h1 className='text-center mb-4'>Service Options</h1>
-                        <ul>
-                            {options?.map((option) => (
-                                <li key={option.id}>{option.name} <CIcon onClick={() => handleDelete(option.id)} icon={cilTrash} style={{cursor: 'pointer', marginLeft: '20px'}}></CIcon></li>
-                            ))}
-                        </ul>
-                        <br />
-                        <div className='flex'>
+                        <div>
+                        <div className=' w-50 mb-5'>
                             <CFormInput type="text" placeholder="Enter Service Option" onChange={handleChange} />
                             <button className="btn btn-primary mt-4" onClick={handleSubmit}>Add</button>
+                        </div>
+                        <div>
+                        <table className="table table-bordered table-hover w-50 shadow-sm">
+    <thead className="table-light">
+        <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {options?.map((option, index) => (
+            <tr key={option.id}>
+                <td>{index + 1}</td>
+                <td>{option.name}</td>
+                <td>
+                    <CIcon
+                        onClick={() => handleDelete(option.id)}
+                        icon={cilTrash}
+                        className="text-danger"
+                        style={{ cursor: 'pointer' }}
+                    />
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
+                        </div>
+
+                        
                         </div>
                     </div>
                 </div>
