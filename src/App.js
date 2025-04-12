@@ -17,6 +17,7 @@ import Blog from './views/pages/services/blog'
 import BlogsList from './views/pages/services/bloglist'
 import AllTransactions from './views/pages/services/allTransactions'
 import AllUserDetail from './views/pages/services/AllUserDetail'
+import AllTrips from './views/pages/Trips/AllTrips'
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
@@ -30,6 +31,7 @@ const AllVendors = React.lazy(() => import('./views/pages/services/AllVendors'))
 const HostServices = React.lazy(() => import('./views/pages/services/HostServices'))
 const Trips = React.lazy(() => import('./views/pages/Trips/Trips'))
 const TripDetails = React.lazy(() => import('./views/pages/Trips/TripDetails'))
+const AllServices = React.lazy(() => import('./views/pages/services/AllServices'))
 
 const App = () => {
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
@@ -65,6 +67,8 @@ const App = () => {
           <Route exact path="/users" name="users" element={<AllUsers />} />
           <Route exact path="/vendors" name="vendors" element={<AllVendors />} />
           <Route exact path="/vendor/create" name="vendors" element={<CreateVendor />} />
+          <Route exact path="/services/all" name="services" element={<AllServices />} />
+          <Route exact path="/trips/all" name="trips" element={<AllTrips />} />
           <Route exact path="/vendor/services/:id" name="services" element={<HostServices />} />
           <Route exact path="/vendor/trips/:id" name="trips" element={<Trips />} />
           <Route exact path="detail/:id" name="user" element={<AllUserDetail />} />
