@@ -25,7 +25,7 @@ const AllServices = () => {
       {
         header: 'Name',
         accessorKey: 'name',
-        // accessorFn: (dataRow) => <Link to={`/service/${dataRow.id}`} style={{ textDecoration: 'none' }}>{dataRow.name}</Link>,
+        accessorFn: (dataRow) => <Link to={`/service/${dataRow.id}`} style={{ textDecoration: 'none' }}>{dataRow.name}</Link>,
       },
       {
         header: 'Type',

@@ -18,6 +18,8 @@ import BlogsList from './views/pages/services/bloglist'
 import AllTransactions from './views/pages/services/allTransactions'
 import AllUserDetail from './views/pages/services/AllUserDetail'
 import AllTrips from './views/pages/Trips/AllTrips'
+import ServiceDetails from './views/pages/services/ServiceDetails'
+import Queries from './views/pages/services/Queries'
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
@@ -70,7 +72,7 @@ const App = () => {
           <Route exact path="/services/all" name="services" element={<AllServices />} />
           <Route exact path="/trips/all" name="trips" element={<AllTrips />} />
           <Route exact path="/vendor/services/:id" name="services" element={<HostServices />} />
-          <Route exact path="/vendor/trips/:id" name="trips" element={<Trips />} />
+          <Route exact path="/vendor/trips/:id" name="trips" element={<Trips />} />``
           <Route exact path="detail/:id" name="user" element={<AllUserDetail />} />
           <Route exact path="/user/trips/:id" name="trips" element={<UserTrips />} />
           <Route exact path="/trip/:id" name="trips" element={<TripDetails />} />
@@ -78,11 +80,13 @@ const App = () => {
           <Route exact path="/destination/all" name="destination" element={<AllDestinations />} />
           <Route exact path="/kyc/:id" name="kyc" element={<KycDetails />} />
           <Route exact path="/kyc/all" name="kyc" element={<PendingKyc />} />
+          <Route exact path="/service/:id" name="service" element={<ServiceDetails />} />
           <Route exact path="/kyc/vendor/:id" name="kyc" element={<VendorKycDetails />} />
           <Route exact path="/service-options" name="service-options" element={<ServiceOption />} />
           <Route exact path="/transactions/:id" name="transactions" element={<Transactions />} />
           <Route exact path="/transactions/all" name="transactions" element={<AllTransactions />} />
           <Route exact path="/blog" name="blog" element={<Blog />} />
+          <Route exact path="/queries" name="query" element={<Queries />} />
           <Route exact path="/blogs" name="blogs" element={<BlogsList />} />
 
 

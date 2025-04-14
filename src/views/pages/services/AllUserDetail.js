@@ -10,12 +10,13 @@ import {
   CModalBody,
   CModalFooter,
   CButton,
+  CInputGroup,
 } from "@coreui/react";
 import { AppHeader, AppSidebar } from "../../../components";
 
 const AllUserDetail = () => {
   const [userData, setUserData] = useState(null);
-  
+
   const [selectedPost, setSelectedPost] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const token = localStorage.getItem("token");
@@ -100,106 +101,120 @@ const AllUserDetail = () => {
 
   return (
     <>
-  <AppSidebar />
+      <AppSidebar />
       <div className="wrapper d-flex flex-column min-vh-100">
         <AppHeader />
-    <div className="container py-4">
-      <div className="card shadow-sm p-3 mb-4 text-center">
-        <img
-          src={userData.image}
-          alt={userData.username}
-          className="rounded-circle border img-fluid mx-auto"
-          style={{ width: "100px", height: "100px" }}
-        />
-        <h2 className="h5 mt-2">{userData.username}</h2>
-        <p className="text-muted mb-0">{userData.email}</p>
-        <p className="text-muted mb-0">{userData.phone}</p>
-      </div>
-
-      <h3 className="mb-3">Posts</h3>
-      <div className="row">
-        {userData.post.map((post) => (
-          <div key={post.id} className="col-md-4 mb-4">
-            <div className="card shadow-sm">
-              {post.media_type === "VIDEO" ? (
-                <div className="position-relative">
-                  <img
-                    src={post.thumbnail}
-                    alt="Video thumbnail"
-                    className="card-img-top"
-                    style={{ height: "200px", objectFit: "cover" }}
-                  />
-                  <button
-                    className="btn btn-dark position-absolute top-50 start-50 translate-middle"
-                    onClick={() => window.open(post.image, "_blank")}
-                  >
-                    <CIcon icon={cilMediaPlay} size="lg" />
-                  </button>
-                </div>
-              ) : (
-                <img
-                  src={post.image || ""}
-                  alt={post.description}
-                  className="card-img-top"
-                  style={{ height: "200px", objectFit: "cover" }}
-                />
-              )}
-              <div className="card-body">
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                <p className="fw-semibold mb-1">{post.description}</p>
-                <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => deletepost(post.id)}
-                  >
-                    <CIcon icon={cilTrash} />
-                  </button>
-                </div>
-                <p className="text-muted small">{post.place}</p>
-                <p className="text-muted small">Likes: {post.Likes.length}</p>
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => {
-                    setSelectedPost(post.id);
-                    setShowModal(true);
-                  }}
-                >
-                  View Comments ({post.comment.length})
-                </button>
-              </div>
-            </div>
+        <div className="container py-4">
+          <div className="card shadow-sm p-3 mb-4 text-center">
+            <img
+              src={userData.image}
+              alt={userData.username}
+              className="rounded-circle border img-fluid mx-auto"
+              style={{ width: "100px", height: "100px" }}
+            />
+            <h2 className="h5 mt-2">{userData.username}</h2>
+            <p className="text-muted mb-0">{userData.email}</p>
+            <p className="text-muted mb-0">{userData.phone}</p>
           </div>
-        ))}
-      </div>
+          <div className="flex gap-4">
+            <h5 className="">Update Password</h5>
+            <input
+              type="text"
+              className="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter New Password"
+              required
+            />
+            <button type="submit" className="btn btn-primary">
+                Update
+              </button>
+          </div>
 
-      {/* Comments Modal */}
-      <CModal visible={showModal} onClose={() => setShowModal(false)}>
-        <CModalHeader closeButton>
-          <CModalTitle>Comments</CModalTitle>
-        </CModalHeader>
-        <CModalBody>
-          {selectedPost &&
-            userData.post
-              .find((post) => post.id === selectedPost)
-              ?.comment.map((comment) => (
-                <li key={comment.id} className="list-group-item d-flex justify-content-between align-items-center mb-2">
-                  <span>{comment.comment}</span>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => deleteComment(comment.id)}
-                  >
-                    <CIcon icon={cilTrash} />
-                  </button>
-                </li>
-              ))}
-        </CModalBody>
-        <CModalFooter>
-          <CButton color="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </CButton>
-        </CModalFooter>
-      </CModal>
-    </div>
-  </div>
+          <h3 className="mb-3">Posts</h3>
+          <div className="row">
+            {userData.post.map((post) => (
+              <div key={post.id} className="col-md-4 mb-4">
+                <div className="card shadow-sm">
+                  {post.media_type === "VIDEO" ? (
+                    <div className="position-relative">
+                      <img
+                        src={post.thumbnail}
+                        alt="Video thumbnail"
+                        className="card-img-top"
+                        style={{ height: "200px", objectFit: "cover" }}
+                      />
+                      <button
+                        className="btn btn-dark position-absolute top-50 start-50 translate-middle"
+                        onClick={() => window.open(post.image, "_blank")}
+                      >
+                        <CIcon icon={cilMediaPlay} size="lg" />
+                      </button>
+                    </div>
+                  ) : (
+                    <img
+                      src={post.image || ""}
+                      alt={post.description}
+                      className="card-img-top"
+                      style={{ height: "200px", objectFit: "cover" }}
+                    />
+                  )}
+                  <div className="card-body">
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <p className="fw-semibold mb-1">{post.description}</p>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deletepost(post.id)}
+                      >
+                        <CIcon icon={cilTrash} />
+                      </button>
+                    </div>
+                    <p className="text-muted small">{post.place}</p>
+                    <p className="text-muted small">Likes: {post.Likes.length}</p>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      onClick={() => {
+                        setSelectedPost(post.id);
+                        setShowModal(true);
+                      }}
+                    >
+                      View Comments ({post.comment.length})
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Comments Modal */}
+          <CModal visible={showModal} onClose={() => setShowModal(false)}>
+            <CModalHeader closeButton>
+              <CModalTitle>Comments</CModalTitle>
+            </CModalHeader>
+            <CModalBody>
+              {selectedPost &&
+                userData.post
+                  .find((post) => post.id === selectedPost)
+                  ?.comment.map((comment) => (
+                    <li key={comment.id} className="list-group-item d-flex justify-content-between align-items-center mb-2">
+                      <span>{comment.comment}</span>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deleteComment(comment.id)}
+                      >
+                        <CIcon icon={cilTrash} />
+                      </button>
+                    </li>
+                  ))}
+            </CModalBody>
+            <CModalFooter>
+              <CButton color="secondary" onClick={() => setShowModal(false)}>
+                Close
+              </CButton>
+            </CModalFooter>
+          </CModal>
+        </div>
+      </div>
     </>
   );
 };

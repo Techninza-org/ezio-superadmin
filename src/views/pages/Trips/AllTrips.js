@@ -24,19 +24,29 @@ export default function AllTrips() {
 
     const columns = useMemo(
         () => [
-            // {
-            //     header: 'Details',
-            //     accessorFn: (dataRow) => <Link to={`/trip/${dataRow.id}`}><CIcon icon={cilDescription} /></Link>,
-            //     size: 50,
-            // },
+            {
+                header: 'Details',
+                accessorFn: (dataRow) => <Link to={`/trip/${dataRow.id}`}><CIcon icon={cilDescription} /></Link>,
+                size: 50,
+            },
             {
                 header: 'Name',
-                accessorKey: 'user.username',
+                accessorFn: (dataRow) => <Link style={{textDecoration: 'none'}} to={`/detail/${dataRow.user.id}`}>{dataRow.user.username}</Link>,
                 size: 100,
             },
             {
                 header: 'Phone',
                 accessorKey: 'user.phone',
+                size: 100,
+            },
+            {
+                header: 'Service Details',
+                accessorFn: (dataRow) => <Link style={{textDecoration: 'none'}} to={`/service/${dataRow.service_id}`}>Service Details</Link>,
+                size: 100,
+            },
+            {
+                header: 'Service Rating',
+                accessorKey: 'service.rating',
                 size: 100,
             },
             {
@@ -68,6 +78,11 @@ export default function AllTrips() {
                 header: 'Booking Price',
                 accessorFn: (dataRow) => <span>&#8377;{dataRow.cost / 100}</span>,
                 size: 80,
+            },
+            {
+                header: 'Order Id',
+                accessorKey: 'order_id',
+                size: 100,
             },
         ],
         [],
